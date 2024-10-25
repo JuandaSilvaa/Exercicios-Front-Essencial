@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Dados git</h1>
+      <button class="btn btn-primary" onclick="dadosGitHub()">Mostra</button>
+      <div id="resposta">
+        <p>Dados usuario</p>
+      </div>
+    </div>
+
+    <script>
+      function dadosGitHub() {
+        let url = "https://api.github.com/users/WesseleyJr";
+
+        fetch(url)
+          .then((resolve) => resolve.json())
+          .then((data) => mostrar(data))
+          .catch((reject) => console.log("Erro"));
+      }
+
+      function mostrar(data) {
+        let resposta = document.getElementById("resposta");
+        resposta.innerHTML = `<p>Login: ${data.login}</p> <img src=${data.avatar_url}>`;
+      }
+    </script>
+  </body>
+</html>
